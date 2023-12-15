@@ -42,9 +42,6 @@ $watermarkPosition = 'center';
 // Watermark path.
 $watermarkPath = __DIR__ . '/images/watermark.png';
 
-// File name.
-$fileName = 'watermark.jpg';
-
 // ------------------- File paths -----------------------
 
 // File name
