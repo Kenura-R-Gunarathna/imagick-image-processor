@@ -1,0 +1,20 @@
+{
+    "name": "kenura/imagick",
+    "description": "Image resizer, compressor, and watermark adder",
+    "type": "library",
+    "require": {
+        "ext-imagick": "^3.7"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Kenura\\Imagick\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kenura-R-Gunarathna",
+            "email": "kenuragunarathna@gmail.com"
+        }
+    ]
+}
