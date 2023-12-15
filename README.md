@@ -6,6 +6,14 @@ This library, created with the assistance of [ChatGPT](https://chat.openai.com),
 
 - PHP extension `ext-imagick` version > 3.7
 
+## Installation
+
+To install Imagick Image Processor using Composer, run the following command:
+
+```bash
+composer require kenura/imagick
+```
+
 ## Methods
 
 ### Resize
