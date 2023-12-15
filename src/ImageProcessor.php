@@ -122,6 +122,30 @@ class ImageProcessor
         imagedestroy($watermark);
     }
 
+    public function addOpacity($inputImagePath, $outputImagePath, $opacityPercent)
+    {
+        $image = $this->openImage($inputImagePath);
+
+        // Ensure opacity is within the valid range (0 to 100)
+        $opacityPercent = max(0, min(100, $opacityPercent));
+
+        // Create a transparent image
+        $transparentImage = imagecreatetruecolor(imagesx($image), imagesy($image));
+        $transparentColor = imagecolorallocatealpha($transparentImage, 255, 255, 255, 127);
+        imagefill($transparentImage, 0, 0, $transparentColor);
+        imagesavealpha($transparentImage, true);
+
+        // Copy the original image onto the transparent image with opacity
+        imagecopymerge($transparentImage, $image, 0, 0, 0, 0, imagesx($image), imagesy($image), $opacityPercent);
+
+        // Save the image with transparency as PNG
+        imagepng($transparentImage, $outputImagePath);
+
+        // Destroy resources
+        imagedestroy($image);
+        imagedestroy($transparentImage);
+    }
+
     private function openImage($imagePath)
     {
         $imageInfo = getimagesize($imagePath);

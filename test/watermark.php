@@ -5,6 +5,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Kenura\Imagick\ImageProcessor;
 
+$processor = new ImageProcessor();
+
 // diagonal lenght of the wallpaper as a percentage of the parent.
 $scalePercent = 30;
 
@@ -23,7 +25,7 @@ $scalePercent = 30;
 */
 $watermarkPosition = 'center';
 
-// Output path.
+// Watermark path.
 $watermarkPath = __DIR__ . '/images/watermark.png';
 
 // File name.
@@ -34,7 +36,6 @@ $filePath = __DIR__ . '/images/input/' . $fileName;
 
 // Output path.
 $outputPath = __DIR__ . '/images/output/' . $fileName;
-
-$processor = new ImageProcessor();
-
+ 
+// Add watermark.
 $processor->addWatermark($filePath, $outputPath, $watermarkPath, $watermarkPosition, $scalePercent);
