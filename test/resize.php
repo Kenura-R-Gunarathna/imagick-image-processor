@@ -7,18 +7,20 @@ use Kenura\Imagick\ImageProcessor;
 
 $processor = new ImageProcessor();
 
+// Maximum width of the image.
 $maxWidth = 620;
 
+// Maximum height of the image.
 $maxHeight = 466;
 
-// File name
+// File name.
 $fileName = 'resize.jpg';
 
-// Read file path
+// Read file path.
 $filePath = __DIR__ . '/images/input/' . $fileName;
 
-// Output path
-$resizedOutputPath = __DIR__ . '/images/output/' . $fileName;
+// Output path.
+$outputPath = __DIR__ . '/images/output/' . $fileName;
 
-// Resize the image and save to the output folder
-$processor->resizeImage($filePath, $resizedOutputPath, $maxWidth, $maxHeight);
+// Resize the image and save to the output folder.
+$processor->resizeImage($filePath, $outputPath, $maxWidth, $maxHeight);

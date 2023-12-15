@@ -2,12 +2,16 @@
 
 ## Resize
 
-Imag resizing is working.
+Image resizing is working.
 
 ## Compress
 
-Imag compression is working.
+Image compression is working.
+
+## Watermark
+
+Image watermark is working.
 
 ## Resize-Compress
 
-Imag Resize-compression is working.
+Image Resize-compression is working.

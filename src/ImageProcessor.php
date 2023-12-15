@@ -53,6 +53,75 @@ class ImageProcessor
         
     }
 
+    public function addWatermark($inputImagePath, $outputImagePath, $watermarkImagePath, $position = 'center', $scalePercent = 10)
+    {
+        $image = $this->openImage($inputImagePath);
+        $watermark = $this->openImage($watermarkImagePath);
+
+        $imageWidth = imagesx($image);
+        $imageHeight = imagesy($image);
+        $watermarkWidth = imagesx($watermark);
+        $watermarkHeight = imagesy($watermark);
+
+        // Calculate the diagonal length of the image
+        $imageDiagonal = sqrt($imageWidth * $imageWidth + $imageHeight * $imageHeight);
+
+        // Calculate the scaled width and height of the watermark based on the diagonal length
+        $scaledWidth = ($scalePercent / 100) * $imageDiagonal;
+        $scaledHeight = $scaledWidth * ($watermarkHeight / $watermarkWidth);
+
+        // Calculate watermark position
+        switch ($position) {
+            case 'top':
+                $x = ($imageWidth - $scaledWidth) / 2;
+                $y = 0;
+                break;
+            case 'bottom':
+                $x = ($imageWidth - $scaledWidth) / 2;
+                $y = $imageHeight - $scaledHeight;
+                break;
+            case 'left':
+                $x = 0;
+                $y = ($imageHeight - $scaledHeight) / 2;
+                break;
+            case 'right':
+                $x = $imageWidth - $scaledWidth;
+                $y = ($imageHeight - $scaledHeight) / 2;
+                break;
+            case 'top-left':
+                $x = 0;
+                $y = 0;
+                break;
+            case 'top-right':
+                $x = $imageWidth - $scaledWidth;
+                $y = 0;
+                break;
+            case 'bottom-left':
+                $x = 0;
+                $y = $imageHeight - $scaledHeight;
+                break;
+            case 'bottom-right':
+                $x = $imageWidth - $scaledWidth;
+                $y = $imageHeight - $scaledHeight;
+                break;
+            case 'center':
+            default:
+                $x = ($imageWidth - $scaledWidth) / 2;
+                $y = ($imageHeight - $scaledHeight) / 2;
+                break;
+        }
+
+        // Merge the images
+        imagecopyresampled($image, $watermark, $x, $y, 0, 0, $scaledWidth, $scaledHeight, imagesx($watermark), imagesy($watermark));
+
+        // Save the image with watermark
+        imagejpeg($image, $outputImagePath);
+
+        // Destroy resources
+        imagedestroy($image);
+        imagedestroy($watermark);
+    }
+
     private function openImage($imagePath)
     {
         $imageInfo = getimagesize($imagePath);
