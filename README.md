@@ -1,6 +1,6 @@
 # Imagick Image Processor
 
-This library, created with the assistance of [ChatGPT](https://chat.openai.com), focuses on simple methods for image processing using the `Imagick` PHP extension.
+This library, created with focuses on simple methods for image processing using the `Imagick` PHP extension.
 
 ## Requirements
 
