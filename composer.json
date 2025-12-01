@@ -3,6 +3,7 @@
     "description": "Image resizer, compressor, and watermark adder",
     "type": "library",
     "require": {
+        "php": ">=8.1",
         "ext-imagick": "^3.7"
     },
     "require-dev": {
@@ -30,4 +31,3 @@
         }
     ]
 }
-

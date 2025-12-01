@@ -357,7 +357,7 @@ try {
 
 ## Requirements
 
-- PHP 7.4 or higher
+- PHP 8.1 or higher
 - `ext-imagick` extension version 3.7 or higher
 - GD library (included with most PHP installations)
 

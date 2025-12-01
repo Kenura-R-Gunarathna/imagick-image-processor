@@ -16,7 +16,7 @@ A powerful and easy-to-use PHP library for image processing using the GD extensi
 
 ## 📋 Requirements
 
-- PHP 7.4 or higher
+- PHP 8.1 or higher
 - GD extension (usually included with PHP)
 - `ext-imagick` version 3.7 or higher
 

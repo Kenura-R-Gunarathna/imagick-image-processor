@@ -72,8 +72,6 @@ The test suite covers:
 ### Continuous Integration
 
 Every push and pull request automatically runs tests via GitHub Actions across multiple PHP versions:
-- PHP 7.4
-- PHP 8.0
 - PHP 8.1
 - PHP 8.2
 - PHP 8.3
