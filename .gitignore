@@ -1,0 +1,27 @@
+# Composer
+/vendor/
+composer.lock
+
+# PHPUnit
+/tests/output/
+/tests/fixtures/
+/coverage/
+.phpunit.result.cache
+
+# IDE
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test outputs
+/test/images/output/*
+!/test/images/output/.gitkeep
+
+# Logs
+*.log

@@ -5,11 +5,23 @@
     "require": {
         "ext-imagick": "^3.7"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
     "license": "MIT",
     "autoload": {
         "psr-4": {
             "Kenura\\Imagick\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kenura\\Imagick\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-html coverage"
     },
     "authors": [
         {
@@ -18,3 +30,4 @@
         }
     ]
 }
+

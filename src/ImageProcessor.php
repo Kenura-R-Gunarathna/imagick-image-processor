@@ -146,6 +146,20 @@ class ImageProcessor
         imagedestroy($transparentImage);
     }
 
+    public function convertToWebP($inputImagePath, $outputImagePath, $quality = 80)
+    {
+        $image = $this->openImage($inputImagePath);
+
+        // Ensure quality is within the valid range (0 to 100)
+        $quality = max(0, min(100, $quality));
+
+        // Save as WebP
+        imagewebp($image, $outputImagePath, $quality);
+
+        // Destroy resources
+        imagedestroy($image);
+    }
+
     private function openImage($imagePath)
     {
         $imageInfo = getimagesize($imagePath);

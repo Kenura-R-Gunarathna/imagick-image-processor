@@ -1,0 +1,145 @@
+---
+title: Installation
+description: Learn how to install the Imagick Image Processor library in your PHP project.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+## Prerequisites
+
+Before installing the Imagick Image Processor library, ensure your system meets the following requirements:
+
+- **PHP**: Version 7.4 or higher
+- **Imagick Extension**: Version 3.7 or higher
+
+### Installing the Imagick Extension
+
+If you don't have the Imagick extension installed, follow the instructions for your operating system:
+
+<Tabs>
+    <TabItem label="Ubuntu/Debian">
+        ```bash
+        sudo apt-get update
+        sudo apt-get install php-imagick
+        sudo systemctl restart apache2  # or php-fpm
+        ```
+    </TabItem>
+
+    <TabItem label="macOS">
+        ```bash
+        # Using Homebrew
+        brew install imagemagick
+        pecl install imagick
+
+        # Add to php.ini
+        echo "extension=imagick.so" >> /usr/local/etc/php/php.ini
+        ```
+    </TabItem>
+
+    <TabItem label="Windows">
+        1. Download the appropriate DLL from [PECL](https://pecl.php.net/package/imagick)
+        2. Place it in your PHP extensions directory
+        3. Add `extension=php_imagick.dll` to your `php.ini`
+        4. Restart your web server
+    </TabItem>
+</Tabs>
+
+### Verify Installation
+
+Check if the Imagick extension is installed and enabled:
+
+```bash
+php -m | grep imagick
+```
+
+You should see `imagick` in the output.
+
+## Installing via Composer
+
+The recommended way to install the Imagick Image Processor is through [Composer](https://getcomposer.org/).
+
+### Step 1: Install Composer
+
+If you don't have Composer installed, download and install it from [getcomposer.org](https://getcomposer.org/download/).
+
+### Step 2: Install the Package
+
+Run the following command in your project directory:
+
+```bash
+composer require kenura/imagick
+```
+
+This will:
+- Download the library and its dependencies
+- Add it to your `composer.json` file
+- Update your `composer.lock` file
+- Generate the autoloader
+
+### Step 3: Include the Autoloader
+
+In your PHP files, include Composer's autoloader:
+
+```php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Kenura\Imagick\ImageProcessor;
+
+// Now you can use the ImageProcessor class
+$processor = new ImageProcessor();
+```
+
+## Manual Installation
+
+If you prefer not to use Composer, you can manually download and include the library:
+
+1. Download the latest release from [GitHub](https://github.com/Kenura-R-Gunarathna/imagick-image-processor)
+2. Extract the files to your project directory
+3. Include the `ImageProcessor.php` file:
+
+```php
+<?php
+
+require_once __DIR__ . '/path/to/src/ImageProcessor.php';
+
+use Kenura\Imagick\ImageProcessor;
+
+$processor = new ImageProcessor();
+```
+
+:::caution
+Manual installation requires you to manage updates yourself. We strongly recommend using Composer for easier dependency management.
+:::
+
+## Verifying the Installation
+
+Create a simple test script to verify everything is working:
+
+```php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Kenura\Imagick\ImageProcessor;
+
+try {
+    $processor = new ImageProcessor();
+    echo "✅ Imagick Image Processor is installed and ready to use!\n";
+} catch (Exception $e) {
+    echo "❌ Error: " . $e->getMessage() . "\n";
+}
+```
+
+Run the script:
+
+```bash
+php test.php
+```
+
+If you see the success message, you're all set! 🎉
+
+## Next Steps
+
+Now that you have the library installed, check out the [Quick Start Guide](/getting-started/quick-start/) to learn how to use it, or explore the [Guides](/guides/resizing/) for specific use cases.

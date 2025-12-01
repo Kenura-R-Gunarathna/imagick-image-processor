@@ -1,0 +1,82 @@
+---
+title: Imagick Image Processor
+description: A powerful and easy-to-use PHP library for image processing using the Imagick extension.
+template: splash
+hero:
+  tagline: Transform, compress, and watermark images with ease using this powerful PHP library built on the Imagick extension.
+  image:
+    file: ../../assets/houston.webp
+  actions:
+    - text: Get Started
+      link: /getting-started/installation/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/Kenura-R-Gunarathna/imagick-image-processor
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Why Imagick Image Processor?
+
+<CardGrid stagger>
+  <Card title="🚀 Simple & Intuitive" icon="rocket">
+    Clean, straightforward API that makes image processing tasks easy. No complex configuration required.
+  </Card>
+  <Card title="⚡ Powerful Features" icon="star">
+    Resize, compress, watermark, and adjust opacity with just a few lines of code.
+  </Card>
+  <Card title="🎨 Aspect Ratio Preservation" icon="approve-check">
+    Automatically maintains image aspect ratios during resizing operations.
+  </Card>
+  <Card title="🔧 Flexible Watermarking" icon="setting">
+    Position watermarks anywhere on your images with 9 preset positions and custom scaling.
+  </Card>
+  <Card title="📦 Composer Ready" icon="add-document">
+    Install via Composer and start processing images immediately.
+  </Card>
+  <Card title="🎯 Production Ready" icon="approve-check-circle">
+    Battle-tested methods for real-world image processing needs.
+  </Card>
+</CardGrid>
+
+## Quick Example
+
+```php
+use Kenura\Imagick\ImageProcessor;
+
+$processor = new ImageProcessor();
+
+// Resize an image while maintaining aspect ratio
+$processor->resizeImage('input.jpg', 'output.jpg', 800, 600);
+
+// Compress to a target file size
+$processor->compressToJpg('input.jpg', 'compressed.jpg', 100); // 100KB target
+
+// Add a watermark
+$processor->addWatermark(
+    'input.jpg', 
+    'watermarked.jpg', 
+    'logo.png', 
+    'bottom-right', 
+    10 // 10% of diagonal
+);
+```
+
+## Features at a Glance
+
+- **Image Resizing**: Maintain aspect ratios automatically
+- **Smart Compression**: Compress images to target file sizes
+- **Watermarking**: 9 preset positions with diagonal-based scaling
+- **Opacity Control**: Add transparency to images
+- **Combined Operations**: Chain multiple operations efficiently
+- **Format Support**: JPEG, PNG, and GIF
+
+## Requirements
+
+- PHP 7.4 or higher
+- `ext-imagick` extension version 3.7 or higher
+
+Ready to get started? Check out the [Installation Guide](/getting-started/installation/) or dive into the [Quick Start](/getting-started/quick-start/)!

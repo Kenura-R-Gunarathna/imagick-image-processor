@@ -1,0 +1,59 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3']
+    
+    name: PHP ${{ matrix.php }} - ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: gd, imagick
+          coverage: none
+      
+      - name: Validate composer.json
+        run: composer validate --strict
+      
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-${{ matrix.php }}-
+      
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+      
+      - name: Check PHP extensions
+        run: |
+          php -m | grep -i gd
+          php -m | grep -i imagick || echo "Imagick not available, some tests may be skipped"
+      
+      - name: Run test suite
+        run: composer test
+      
+      - name: Check code style (PHP 8.2 only)
+        if: matrix.php == '8.2'
+        run: |
+          composer require --dev friendsofphp/php-cs-fixer --no-interaction || true
+          vendor/bin/php-cs-fixer fix --dry-run --diff || true
