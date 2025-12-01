@@ -6,7 +6,17 @@ class ImageProcessor
 {
     public function resizeImage($inputImagePath, $outputImagePath, $width, $height)
     {
-        list($origWidth, $origHeight) = getimagesize($inputImagePath);
+        // Validate input file
+        if (!file_exists($inputImagePath)) {
+            throw new \Exception("Input file not found: {$inputImagePath}");
+        }
+        
+        $imageInfo = getimagesize($inputImagePath);
+        if ($imageInfo === false) {
+            throw new \Exception("Invalid image file: {$inputImagePath}");
+        }
+        
+        list($origWidth, $origHeight) = $imageInfo;
         $aspectRatio = $origWidth / $origHeight;
 
         if ($width / $height > $aspectRatio) {
